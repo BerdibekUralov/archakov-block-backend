@@ -2,6 +2,8 @@ import express from 'express';
 import fs from 'fs';
 import multer from 'multer';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import mongoose from 'mongoose';
 
@@ -12,7 +14,7 @@ import { handleValidationErrors, checkAuth } from './utils/index.js';
 import { UserController, PostController } from './controllers/index.js';
 
 mongoose
-  .connect('mongodb+srv://admin:20berdibek02@cluster0.pvs2pqq.mongodb.net/blog?retryWrites=true&w=majority')
+  .connect(process.env.MONGODB_URL)
   .then(() => console.log('DB ok'))
   .catch((err) => console.log('DB error', err));
 
